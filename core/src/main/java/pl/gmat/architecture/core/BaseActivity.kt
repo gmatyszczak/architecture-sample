@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import javax.inject.Inject
 
-abstract class BaseActivity<ViewModel : BaseViewModel<A, S, E>, A : Any, S, E> : AppCompatActivity() {
+abstract class BaseActivity<ViewModel : BaseViewModel<S, E>, S, E> : AppCompatActivity() {
 
     protected lateinit var viewModel: ViewModel
 
@@ -17,6 +17,8 @@ abstract class BaseActivity<ViewModel : BaseViewModel<A, S, E>, A : Any, S, E> :
     protected abstract val viewModelClass: Class<ViewModel>
 
     protected abstract fun inject()
+
+    abstract fun render(state: S)
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -27,7 +29,7 @@ abstract class BaseActivity<ViewModel : BaseViewModel<A, S, E>, A : Any, S, E> :
         setContentView(layoutId)
         viewModel = ViewModelProviders.of(this, viewModelFactory)[viewModelClass]
 //        viewModel.effect.observe { it.executeIfNotHandled(this) }
-//        viewModel.state.observe { render(it) }
+        viewModel.state.observe { render(it) }
     }
 
     private fun <Type> LiveData<Type>.observe(function: (Type) -> Unit) =

@@ -2,10 +2,10 @@ package pl.gmat.architecture.core
 
 import androidx.lifecycle.MutableLiveData
 
-abstract class Store<Action : Any, State, Effect>(
-    private val middleware: MutableMap<Class<out Action>, Middleware<Action>>,
-    private val reducers: MutableMap<Class<out Action>, Reducer<Action, State, Effect>>,
-    private val initialState: State
+class Store<State, Effect>(
+    val middleware: MutableMap<Class<out Action>, Middleware>,
+    val reducers: MutableMap<Class<out Action>, Reducer>,
+    val initialState: State
 ) {
 
     val effect = MutableLiveData<Effect>()
@@ -13,14 +13,17 @@ abstract class Store<Action : Any, State, Effect>(
 
     init {
         state.value = initialState
+        dispatchAction(Action.Init)
     }
 
-    fun dispatchAction(action: Action) {
-        val middleware = middleware[action::class.java]
-        val reducer = reducers[action::class.java]
+    @Suppress("UNCHECKED_CAST")
+    inline fun <reified A : Action> dispatchAction(action: A) {
+        val middleware: Middleware? = middleware[A::class.java]
+        val reducer = reducers[A::class.java]
         when {
-            middleware != null -> middleware.handle(action)
-            reducer != null -> reducer.handle(state.value ?: initialState, action)
+            middleware != null -> (middleware as BaseMiddleware<A>).handle(action)
+            reducer != null -> (reducer as BaseReducer<A, State, Effect>)
+                .handle(state.value ?: initialState, action)
             else -> throw IllegalStateException("Action not handled!")
         }
     }

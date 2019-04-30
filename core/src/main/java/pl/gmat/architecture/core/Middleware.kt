@@ -1,5 +1,7 @@
 package pl.gmat.architecture.core
 
-interface Middleware<Action> {
+interface Middleware
+
+interface BaseMiddleware<Action> : Middleware {
     fun handle(action: Action)
 }

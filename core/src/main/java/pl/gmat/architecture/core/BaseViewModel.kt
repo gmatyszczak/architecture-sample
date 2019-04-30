@@ -3,8 +3,8 @@ package pl.gmat.architecture.core
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 
-abstract class BaseViewModel<Action : Any, State, Effect>(
-    private val store: Store<Action, State, Effect>
+abstract class BaseViewModel<State, Effect>(
+    private val store: Store<State, Effect>
 ) : ViewModel() {
 
     val state: LiveData<State> = store.state
