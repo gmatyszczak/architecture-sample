@@ -20,6 +20,8 @@ abstract class BaseActivity<ViewModel : BaseViewModel<S, E>, S, E> : AppCompatAc
 
     abstract fun render(state: S)
 
+    abstract fun setUp()
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -27,6 +29,7 @@ abstract class BaseActivity<ViewModel : BaseViewModel<S, E>, S, E> : AppCompatAc
         inject()
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
+        setUp()
         viewModel = ViewModelProviders.of(this, viewModelFactory)[viewModelClass]
 //        viewModel.effect.observe { it.executeIfNotHandled(this) }
         viewModel.state.observe { render(it) }
