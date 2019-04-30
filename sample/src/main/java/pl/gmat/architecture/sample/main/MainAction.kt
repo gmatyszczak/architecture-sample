@@ -4,5 +4,7 @@ import pl.gmat.architecture.core.Action
 import pl.gmat.architecture.sample.domain.Person
 
 sealed class MainAction : Action.Feature() {
+    object LoadingFailed : MainAction()
+
     data class LoadingFinished(val people: List<Person>) : MainAction()
 }

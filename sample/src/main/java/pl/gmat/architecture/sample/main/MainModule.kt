@@ -4,7 +4,10 @@ import androidx.lifecycle.ViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
+import io.reactivex.disposables.CompositeDisposable
 import pl.gmat.architecture.core.*
+import pl.gmat.architecture.sample.data.PeopleRepositoryImpl
+import pl.gmat.architecture.sample.domain.PeopleRepository
 
 @Module
 class MainModule {
@@ -26,4 +29,12 @@ class MainModule {
     @ScreenScope
     @Provides
     fun provideInitialState() = MainState()
+
+    @ScreenScope
+    @Provides
+    fun providePeopleRepository(repository: PeopleRepositoryImpl): PeopleRepository = repository
+
+    @ScreenScope
+    @Provides
+    fun provideCompositeDisposable() = CompositeDisposable()
 }

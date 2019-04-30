@@ -21,9 +21,13 @@ class Store<State, Effect>(
         val middleware: Middleware? = middleware[A::class.java]
         val reducer = reducers[A::class.java]
         when {
-            middleware != null -> (middleware as BaseMiddleware<A>).handle(action)
+            middleware != null -> (middleware as BaseMiddleware<A>).handle(action, this)
             reducer != null -> (reducer as BaseReducer<A, State, Effect>)
-                .handle(state.value ?: initialState, action)
+                .handle(state.value ?: initialState, action).fold({
+                    state.value = it
+                }, {
+                    effect.value = it
+                })
             else -> throw IllegalStateException("Action not handled!")
         }
     }

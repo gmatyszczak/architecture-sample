@@ -10,7 +10,8 @@ import pl.gmat.architecture.sample.main.MainComponent
 @ApplicationScope
 @Component(
     modules = [
-        ViewModelModule::class
+        ViewModelModule::class,
+        ApiModule::class
     ]
 )
 interface AppComponent {

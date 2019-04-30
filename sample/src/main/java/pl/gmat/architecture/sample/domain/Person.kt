@@ -1,4 +1,3 @@
 package pl.gmat.architecture.sample.domain
 
-class Person {
-}
+data class Person(val name: String)

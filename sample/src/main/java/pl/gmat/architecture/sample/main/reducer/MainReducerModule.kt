@@ -16,4 +16,10 @@ abstract class MainReducerModule {
     @IntoMap
     @ActionKey(MainAction.LoadingFinished::class)
     abstract fun provideLoadingFinishedReducer(reducer: LoadingFinishedReducer): Reducer
+
+    @ScreenScope
+    @Binds
+    @IntoMap
+    @ActionKey(MainAction.LoadingFailed::class)
+    abstract fun provideLoadingFailedReducer(reducer: LoadingFailedReducer): Reducer
 }

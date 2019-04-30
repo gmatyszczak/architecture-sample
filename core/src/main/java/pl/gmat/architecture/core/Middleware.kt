@@ -2,6 +2,6 @@ package pl.gmat.architecture.core
 
 interface Middleware
 
-interface BaseMiddleware<Action> : Middleware {
-    fun handle(action: Action)
+interface BaseMiddleware<A : Action> : Middleware {
+    fun handle(action: A, store: Store<*, *>)
 }
