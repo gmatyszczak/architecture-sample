@@ -8,7 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import javax.inject.Inject
 
-abstract class BaseActivity<ViewModel : BaseViewModel<S, E>, S, E> : AppCompatActivity() {
+abstract class BaseActivity<ViewModel : BaseViewModel<State, Effect, Action>, State, Effect, Action>
+    : AppCompatActivity() {
 
     protected lateinit var viewModel: ViewModel
 
@@ -18,7 +19,7 @@ abstract class BaseActivity<ViewModel : BaseViewModel<S, E>, S, E> : AppCompatAc
 
     protected abstract fun inject()
 
-    abstract fun render(state: S)
+    abstract fun render(state: State)
 
     abstract fun setUp()
 

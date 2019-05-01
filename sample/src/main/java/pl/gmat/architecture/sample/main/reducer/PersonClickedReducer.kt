@@ -7,7 +7,7 @@ import pl.gmat.architecture.sample.main.MainEffect
 import pl.gmat.architecture.sample.main.MainState
 import javax.inject.Inject
 
-class LoadingFinishedReducer @Inject constructor() : Reducer<MainAction.LoadingFinished, MainState, MainEffect> {
+class PersonClickedReducer @Inject constructor() : Reducer<MainAction.PersonClicked, MainState, MainEffect> {
 
-    override fun handle(state: MainState, action: MainAction.LoadingFinished) = Either.left(MainState(action.people))
+    override fun handle(state: MainState, action: MainAction.PersonClicked) = Either.right(MainEffect.ShowPersonDetails)
 }

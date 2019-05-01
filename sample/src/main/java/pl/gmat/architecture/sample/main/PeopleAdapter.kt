@@ -13,9 +13,9 @@ private val diffUtil = object : DiffUtil.ItemCallback<Person>() {
     override fun areContentsTheSame(oldItem: Person, newItem: Person) = oldItem == newItem
 }
 
-class PeopleAdapter : ListAdapter<Person, PersonViewHolder>(diffUtil) {
+class PeopleAdapter(private val onClick: (Person) -> Unit) : ListAdapter<Person, PersonViewHolder>(diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        PersonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_person, parent, false))
+        PersonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_person, parent, false), onClick)
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) = holder.bind(getItem(position))
 

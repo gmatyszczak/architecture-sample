@@ -1,5 +1,5 @@
 package pl.gmat.architecture.sample.main
 
-class MainEffect {
-
+sealed class MainEffect {
+    object ShowPersonDetails : MainEffect()
 }

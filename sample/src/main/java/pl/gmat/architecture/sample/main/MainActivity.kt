@@ -6,7 +6,7 @@ import pl.gmat.architecture.core.BaseActivity
 import pl.gmat.architecture.sample.R
 import pl.gmat.architecture.sample.SampleAppInjector
 
-class MainActivity : BaseActivity<MainViewModel, MainState, MainEffect>() {
+class MainActivity : BaseActivity<MainViewModel, MainState, MainEffect, MainAction>() {
 
     override val layoutId = R.layout.activity_main
 
@@ -17,7 +17,9 @@ class MainActivity : BaseActivity<MainViewModel, MainState, MainEffect>() {
     private lateinit var peopleAdapter: PeopleAdapter
 
     override fun setUp() {
-        peopleAdapter = PeopleAdapter()
+        peopleAdapter = PeopleAdapter {
+            viewModel.dispatch(MainAction.PersonClicked(it))
+        }
         recyclerView.apply {
             adapter = peopleAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)

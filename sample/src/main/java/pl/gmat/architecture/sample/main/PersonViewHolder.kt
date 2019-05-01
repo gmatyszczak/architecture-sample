@@ -6,9 +6,13 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_person.*
 import pl.gmat.architecture.sample.domain.Person
 
-class PersonViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+class PersonViewHolder(
+    override val containerView: View,
+    private val onClick: (Person) -> Unit
+) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
     fun bind(person: Person) {
         nameTextView.text = person.name
+        containerView.setOnClickListener { onClick(person) }
     }
 }

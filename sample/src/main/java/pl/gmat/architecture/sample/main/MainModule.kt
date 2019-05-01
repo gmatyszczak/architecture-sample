@@ -5,7 +5,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import io.reactivex.disposables.CompositeDisposable
-import pl.gmat.architecture.core.*
+import pl.gmat.architecture.core.ScreenScope
+import pl.gmat.architecture.core.ViewModelKey
 import pl.gmat.architecture.sample.data.PeopleRepositoryImpl
 import pl.gmat.architecture.sample.domain.PeopleRepository
 
@@ -17,14 +18,6 @@ class MainModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     fun provideMainViewModel(viewModel: MainViewModel): ViewModel = viewModel
-
-    @ScreenScope
-    @Provides
-    fun provideStore(
-        middleware: MutableMap<Class<out Action>, Middleware>,
-        reducers: MutableMap<Class<out Action>, Reducer>,
-        initialState: MainState
-    ) = Store<MainState, MainEffect>(middleware, reducers, initialState)
 
     @ScreenScope
     @Provides
