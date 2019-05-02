@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="pl.gmat.architecture.sample.feature.details.DetailsActivity"/>
+        <activity android:name="pl.gmat.architecture.sample.feature.details.DetailsActivity"
+                  android:label="@string/details_title"/>
     </application>
 </manifest>
