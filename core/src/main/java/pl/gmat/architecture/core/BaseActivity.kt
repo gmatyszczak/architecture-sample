@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import javax.inject.Inject
 
-abstract class BaseActivity<ViewModel : BaseViewModel<State, Effect, Action>, State, Effect, Action>
+abstract class BaseActivity<ViewModel : BaseViewModel<State, E, Action>, State, E : Effect, Action>
     : AppCompatActivity() {
 
     protected lateinit var viewModel: ViewModel
@@ -21,6 +21,8 @@ abstract class BaseActivity<ViewModel : BaseViewModel<State, Effect, Action>, St
 
     abstract fun render(state: State)
 
+    abstract fun handleEffect(effect: E)
+
     abstract fun setUp()
 
     @Inject
@@ -32,7 +34,7 @@ abstract class BaseActivity<ViewModel : BaseViewModel<State, Effect, Action>, St
         setContentView(layoutId)
         setUp()
         viewModel = ViewModelProviders.of(this, viewModelFactory)[viewModelClass]
-//        viewModel.effect.observe { it.executeIfNotHandled(this) }
+        viewModel.effect.observe { it.handleIfNotHandled { handleEffect(it) } }
         viewModel.state.observe { render(it) }
     }
 

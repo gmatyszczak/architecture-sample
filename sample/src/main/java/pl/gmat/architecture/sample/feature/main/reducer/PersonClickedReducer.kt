@@ -9,5 +9,6 @@ import javax.inject.Inject
 
 class PersonClickedReducer @Inject constructor() : Reducer<MainAction.PersonClicked, MainState, MainEffect> {
 
-    override fun handle(state: MainState, action: MainAction.PersonClicked) = Either.right(MainEffect.ShowPersonDetails)
+    override fun handle(state: MainState, action: MainAction.PersonClicked) =
+        Either.right(MainEffect.ShowPersonDetails(action.person))
 }

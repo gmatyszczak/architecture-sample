@@ -15,7 +15,7 @@ class PersonClickedReducerTest {
     @Test
     fun `on handle`() {
         assertEquals(
-            Either.right(MainEffect.ShowPersonDetails),
+            Either.right(MainEffect.ShowPersonDetails(Person("name"))),
             reducer.handle(MainState(), MainAction.PersonClicked(Person("name")))
         )
     }

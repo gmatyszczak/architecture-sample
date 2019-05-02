@@ -1,18 +1,17 @@
 package pl.gmat.architecture.sample.feature.main
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import io.reactivex.disposables.CompositeDisposable
-import pl.gmat.architecture.core.Middleware
-import pl.gmat.architecture.core.Reducer
-import pl.gmat.architecture.core.ScreenScope
-import pl.gmat.architecture.core.ViewModelKey
+import pl.gmat.architecture.core.*
 import pl.gmat.architecture.sample.common.CompositeDisposableFacade
 import pl.gmat.architecture.sample.common.CompositeDisposableFacadeImpl
 import pl.gmat.architecture.sample.data.PeopleRepositoryImpl
 import pl.gmat.architecture.sample.domain.PeopleRepository
+import pl.gmat.architecture.sample.feature.main.handler.ShowPersonDetailsHandler
 import pl.gmat.architecture.sample.feature.main.middleware.LoadPeopleMiddleware
 import pl.gmat.architecture.sample.feature.main.reducer.LoadingFailedReducer
 import pl.gmat.architecture.sample.feature.main.reducer.LoadingFinishedReducer
@@ -62,4 +61,13 @@ class MainModule {
     @Provides
     fun providePersonClickedReducer(reducer: PersonClickedReducer): Reducer<MainAction.PersonClicked, MainState, MainEffect> =
         reducer
+
+    @ScreenScope
+    @Provides
+    fun provideShowPersonDetailsHandler(handler: ShowPersonDetailsHandler): EffectHandler<MainEffect.ShowPersonDetails> =
+        handler
+
+    @ScreenScope
+    @Provides
+    fun provideActivity(activity: MainActivity): AppCompatActivity = activity
 }

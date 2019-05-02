@@ -1,3 +1,7 @@
 package pl.gmat.architecture.sample.domain
 
-data class Person(val name: String)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Person(val name: String) : Parcelable
