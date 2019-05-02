@@ -5,6 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import pl.gmat.architecture.core.ApplicationScope
 import pl.gmat.architecture.core.ViewModelModule
+import pl.gmat.architecture.sample.details.DetailsComponent
 import pl.gmat.architecture.sample.main.MainComponent
 
 @ApplicationScope
@@ -24,4 +25,5 @@ interface AppComponent {
     fun inject(application: SampleApplication)
 
     fun mainComponentFactory(): MainComponent.Factory
+    fun detailsComponentFactory(): DetailsComponent.Factory
 }
