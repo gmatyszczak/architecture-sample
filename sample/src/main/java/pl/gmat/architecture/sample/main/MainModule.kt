@@ -9,6 +9,8 @@ import pl.gmat.architecture.core.Middleware
 import pl.gmat.architecture.core.Reducer
 import pl.gmat.architecture.core.ScreenScope
 import pl.gmat.architecture.core.ViewModelKey
+import pl.gmat.architecture.sample.common.CompositeDisposableFacade
+import pl.gmat.architecture.sample.common.CompositeDisposableFacadeImpl
 import pl.gmat.architecture.sample.data.PeopleRepositoryImpl
 import pl.gmat.architecture.sample.domain.PeopleRepository
 import pl.gmat.architecture.sample.main.middleware.LoadPeopleMiddleware
@@ -36,6 +38,10 @@ class MainModule {
     @ScreenScope
     @Provides
     fun provideCompositeDisposable() = CompositeDisposable()
+
+    @ScreenScope
+    @Provides
+    fun provideCompositeDisposableFacade(facade: CompositeDisposableFacadeImpl): CompositeDisposableFacade = facade
 
     @ScreenScope
     @Provides

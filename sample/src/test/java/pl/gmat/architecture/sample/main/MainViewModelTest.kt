@@ -4,7 +4,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import arrow.core.Either
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.disposables.CompositeDisposable
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -14,6 +13,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import pl.gmat.architecture.core.Middleware
 import pl.gmat.architecture.core.Reducer
+import pl.gmat.architecture.sample.common.CompositeDisposableFacade
 import pl.gmat.architecture.sample.domain.Person
 
 @RunWith(MockitoJUnitRunner::class)
@@ -34,13 +34,15 @@ class MainViewModelTest {
     @Mock
     private lateinit var personClickedReducerMock: Reducer<MainAction.PersonClicked, MainState, MainEffect>
 
-    private val compositeDisposable = CompositeDisposable()
+    @Mock
+    private lateinit var compositeDisposableFacadeMock: CompositeDisposableFacade
+
     private lateinit var viewModel: MainViewModel
 
     @Before
     fun setUp() {
         viewModel = MainViewModel(
-            compositeDisposable,
+            compositeDisposableFacadeMock,
             loadPeopleMiddlewareMock,
             loadingFinishedReducerMock,
             loadingFailedReducerMock,
