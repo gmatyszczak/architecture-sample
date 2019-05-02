@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScreenGeneratorConfiguration">
+    <option name="settings">
+      <Settings>
+        <option name="activityBaseClass" value="pl.gmat.architecture.core.BaseActivity" />
+        <option name="fragmentBaseClass" value="pl.gmat.architecture.core.BaseFragment" />
+        <option name="screenElements">
+          <list>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%component%" />
+              <option name="name" value="AndroidComponent" />
+              <option name="template" value="package %packageName%&#10;&#10;import %componentClassFull%&#10;import pl.gmat.architecture.sample.R&#10;import pl.gmat.architecture.sample.SampleAppInjector&#10;&#10;class %screenName%%component% : %componentClass%&lt;%screenName%ViewModel, %screenName%State, %screenName%Effect, %screenName%Action&gt;() {&#10;&#10;    override val layoutId = R.layout.%componentLowerCase%_%screenNameSnakeCase%&#10;&#10;    override val viewModelClass = %screenName%ViewModel::class.java&#10;&#10;    override fun inject() = SampleAppInjector.appComponent.%screenNameLowerCase%ComponentFactory().create(this).inject(this)&#10;&#10;    override fun setUp() = Unit&#10;&#10;    override fun render(state: %screenName%State) = Unit&#10;}&#10;" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="ViewModel" />
+              <option name="template" value="package %packageName%&#10;&#10;import pl.gmat.architecture.core.BaseViewModel&#10;import javax.inject.Inject&#10;&#10;class %screenName%%screenElement% @Inject constructor(&#10;    initialState: %screenName%State&#10;) : BaseViewModel&lt;%screenName%State, %screenName%Effect, %screenName%Action&gt;(initialState) {&#10;    &#10;    override fun dispatch(action: %screenName%Action) = Unit&#10;&#10;    override fun handleEffect(effect: %screenName%Effect) = Unit&#10;}" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Component" />
+              <option name="template" value="package %packageName%&#10;&#10;import dagger.BindsInstance&#10;import dagger.Subcomponent&#10;import pl.gmat.architecture.core.ScreenScope&#10;&#10;@ScreenScope&#10;@Subcomponent(modules = [%screenName%Module::class])&#10;interface %screenName%%screenElement% {&#10;&#10;    @Subcomponent.Factory&#10;    interface Factory {&#10;        fun create(@BindsInstance screen: %screenName%%component%): %screenName%%screenElement%&#10;    }&#10;    &#10;    fun inject(screen: %screenName%%component%)&#10;}&#10;" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Module" />
+              <option name="template" value="package %packageName%&#10;&#10;import androidx.lifecycle.ViewModel&#10;import dagger.Module&#10;import dagger.Provides&#10;import dagger.multibindings.IntoMap&#10;import pl.gmat.architecture.core.ScreenScope&#10;import pl.gmat.architecture.core.ViewModelKey&#10;&#10;@Module&#10;class %screenName%%screenElement% {&#10;&#10;    @ScreenScope&#10;    @Provides&#10;    @IntoMap&#10;    @ViewModelKey(%screenName%ViewModel::class)&#10;    fun provide%screenName%ViewModel(viewModel: %screenName%ViewModel): ViewModel = viewModel&#10;&#10;    @ScreenScope&#10;    @Provides&#10;    fun provideInitialState() = %screenName%State()&#10;}&#10;" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%componentLowerCase%_%screenNameSnakeCase%" />
+              <option name="fileType" value="Layout XML" />
+              <option name="name" value="layout" />
+              <option name="template" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&#10;    android:layout_width=&quot;match_parent&quot;&#10;    android:layout_height=&quot;match_parent&quot;&gt;&#10;&#10;&lt;/FrameLayout&gt;" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Action" />
+              <option name="template" value="package %packageName%&#10;&#10;sealed class %screenName%%screenElement%" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="State" />
+              <option name="template" value="package %packageName%&#10;&#10;class %screenName%%screenElement%" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Effect" />
+              <option name="template" value="package %packageName%&#10;&#10;import pl.gmat.architecture.core.Effect&#10;&#10;sealed class %screenName%%screenElement% : Effect()" />
+            </ScreenElement>
+          </list>
+        </option>
+      </Settings>
+    </option>
+  </component>
+</project>
