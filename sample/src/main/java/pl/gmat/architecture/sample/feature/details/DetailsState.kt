@@ -1,3 +1,5 @@
 package pl.gmat.architecture.sample.feature.details
 
-class DetailsState
+import pl.gmat.architecture.sample.domain.Person
+
+data class DetailsState(val person: Person)

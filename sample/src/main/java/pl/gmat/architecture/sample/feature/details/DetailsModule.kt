@@ -18,5 +18,6 @@ class DetailsModule {
 
     @ScreenScope
     @Provides
-    fun provideInitialState() = DetailsState()
+    fun provideInitialState(activity: DetailsActivity) =
+        DetailsState(person = activity.intent.getParcelableExtra(DetailsActivity.EXTRA_PERSON))
 }

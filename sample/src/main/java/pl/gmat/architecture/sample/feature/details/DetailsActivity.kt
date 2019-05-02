@@ -2,6 +2,7 @@ package pl.gmat.architecture.sample.feature.details
 
 import android.content.Context
 import android.content.Intent
+import kotlinx.android.synthetic.main.activity_details.*
 import pl.gmat.architecture.core.BaseActivity
 import pl.gmat.architecture.sample.R
 import pl.gmat.architecture.sample.SampleAppInjector
@@ -26,7 +27,9 @@ class DetailsActivity : BaseActivity<DetailsViewModel, DetailsState, DetailsEffe
 
     override fun setUp() = Unit
 
-    override fun render(state: DetailsState) = Unit
+    override fun render(state: DetailsState) {
+        nameTextView.text = state.person.name
+    }
 
     override fun handleEffect(effect: DetailsEffect) = Unit
 }
