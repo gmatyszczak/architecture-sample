@@ -2,18 +2,16 @@ package pl.gmat.architecture.sample.main
 
 import io.reactivex.disposables.CompositeDisposable
 import pl.gmat.architecture.core.BaseViewModel
-import pl.gmat.architecture.sample.main.middleware.LoadPeopleMiddleware
-import pl.gmat.architecture.sample.main.reducer.LoadingFailedReducer
-import pl.gmat.architecture.sample.main.reducer.LoadingFinishedReducer
-import pl.gmat.architecture.sample.main.reducer.PersonClickedReducer
+import pl.gmat.architecture.core.Middleware
+import pl.gmat.architecture.core.Reducer
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     private val compositeDisposable: CompositeDisposable,
-    private val loadPeopleMiddleware: LoadPeopleMiddleware,
-    private val loadingFinishedReducer: LoadingFinishedReducer,
-    private val loadingFailedReducer: LoadingFailedReducer,
-    private val personClickedReducer: PersonClickedReducer,
+    private val loadPeopleMiddleware: Middleware<MainAction.Init, MainAction>,
+    private val loadingFinishedReducer: Reducer<MainAction.LoadingFinished, MainState, MainEffect>,
+    private val loadingFailedReducer: Reducer<MainAction.LoadingFailed, MainState, MainEffect>,
+    private val personClickedReducer: Reducer<MainAction.PersonClicked, MainState, MainEffect>,
     initialState: MainState
 ) : BaseViewModel<MainState, MainEffect, MainAction>(initialState) {
 
