@@ -9,6 +9,8 @@ import pl.gmat.architecture.core.EffectHandler
 import pl.gmat.architecture.sample.R
 import pl.gmat.architecture.sample.SampleAppInjector
 import pl.gmat.architecture.sample.domain.Person
+import pl.gmat.architecture.sample.feature.details.action.DetailsAction
+import pl.gmat.architecture.sample.feature.details.effect.DetailsEffect
 import javax.inject.Inject
 
 class DetailsActivity : BaseActivity<DetailsViewModel, DetailsState, DetailsEffect, DetailsAction>() {

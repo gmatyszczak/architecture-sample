@@ -15,6 +15,8 @@ import pl.gmat.architecture.core.Middleware
 import pl.gmat.architecture.core.Reducer
 import pl.gmat.architecture.sample.common.CompositeDisposableFacade
 import pl.gmat.architecture.sample.domain.Person
+import pl.gmat.architecture.sample.feature.main.action.MainAction
+import pl.gmat.architecture.sample.feature.main.effect.MainEffect
 
 @RunWith(MockitoJUnitRunner::class)
 class MainViewModelTest {

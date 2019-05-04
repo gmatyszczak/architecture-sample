@@ -5,8 +5,8 @@ import dagger.BindsInstance
 import dagger.Component
 import pl.gmat.architecture.core.ApplicationScope
 import pl.gmat.architecture.core.ViewModelModule
-import pl.gmat.architecture.sample.feature.details.DetailsComponent
-import pl.gmat.architecture.sample.feature.main.MainComponent
+import pl.gmat.architecture.sample.feature.details.di.DetailsComponent
+import pl.gmat.architecture.sample.feature.main.di.MainComponent
 
 @ApplicationScope
 @Component(

@@ -14,6 +14,8 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import pl.gmat.architecture.core.Reducer
 import pl.gmat.architecture.sample.domain.Person
+import pl.gmat.architecture.sample.feature.details.action.DetailsAction
+import pl.gmat.architecture.sample.feature.details.effect.DetailsEffect
 
 @RunWith(MockitoJUnitRunner::class)
 class DetailsViewModelTest {

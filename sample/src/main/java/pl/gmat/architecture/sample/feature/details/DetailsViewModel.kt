@@ -2,6 +2,8 @@ package pl.gmat.architecture.sample.feature.details
 
 import pl.gmat.architecture.core.BaseViewModel
 import pl.gmat.architecture.core.Reducer
+import pl.gmat.architecture.sample.feature.details.action.DetailsAction
+import pl.gmat.architecture.sample.feature.details.effect.DetailsEffect
 import javax.inject.Inject
 
 class DetailsViewModel @Inject constructor(

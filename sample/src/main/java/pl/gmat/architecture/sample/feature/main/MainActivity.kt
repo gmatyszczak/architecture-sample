@@ -6,6 +6,9 @@ import pl.gmat.architecture.core.BaseActivity
 import pl.gmat.architecture.core.EffectHandler
 import pl.gmat.architecture.sample.R
 import pl.gmat.architecture.sample.SampleAppInjector
+import pl.gmat.architecture.sample.feature.main.action.MainAction
+import pl.gmat.architecture.sample.feature.main.effect.MainEffect
+import pl.gmat.architecture.sample.feature.main.widget.PeopleAdapter
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<MainViewModel, MainState, MainEffect, MainAction>() {
