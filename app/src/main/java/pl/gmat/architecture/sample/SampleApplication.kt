@@ -1,10 +1,12 @@
 package pl.gmat.architecture.sample
 
-import pl.gmat.architecture.core.BaseApplication
+import android.app.Application
+import pl.gmat.architecture.core.Injector
 
-class SampleApplication : BaseApplication<AppComponent>() {
+class SampleApplication : Application() {
 
-    override val appInjector = SampleAppInjector
-
-    override fun inject(component: AppComponent) = component.inject(this)
+    override fun onCreate() {
+        super.onCreate()
+        Injector.init()
+    }
 }

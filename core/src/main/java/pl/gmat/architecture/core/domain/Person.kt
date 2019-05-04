@@ -1,4 +1,4 @@
-package pl.gmat.architecture.sample.domain
+package pl.gmat.architecture.core.domain
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

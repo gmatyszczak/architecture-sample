@@ -9,8 +9,8 @@ import io.reactivex.disposables.CompositeDisposable
 import pl.gmat.architecture.core.*
 import pl.gmat.architecture.sample.common.CompositeDisposableFacade
 import pl.gmat.architecture.sample.common.CompositeDisposableFacadeImpl
+import pl.gmat.architecture.sample.data.PeopleRepository
 import pl.gmat.architecture.sample.data.PeopleRepositoryImpl
-import pl.gmat.architecture.sample.domain.PeopleRepository
 import pl.gmat.architecture.sample.feature.main.MainActivity
 import pl.gmat.architecture.sample.feature.main.MainState
 import pl.gmat.architecture.sample.feature.main.MainViewModel
@@ -25,54 +25,54 @@ import pl.gmat.architecture.sample.feature.main.effect.handler.ShowPersonDetails
 @Module
 class MainModule {
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     fun provideMainViewModel(viewModel: MainViewModel): ViewModel = viewModel
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideInitialState() = MainState()
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun providePeopleRepository(repository: PeopleRepositoryImpl): PeopleRepository = repository
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideCompositeDisposable() = CompositeDisposable()
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideCompositeDisposableFacade(facade: CompositeDisposableFacadeImpl): CompositeDisposableFacade = facade
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideLoadPeopleMiddleware(middleware: LoadPeopleMiddleware): Middleware<MainAction.Init, MainAction> =
         middleware
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideLoadingFailedReducer(reducer: LoadingFailedReducer): Reducer<MainAction.LoadingFailed, MainState, MainEffect> =
         reducer
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideLoadingFinishedReducer(reducer: LoadingFinishedReducer): Reducer<MainAction.LoadingFinished, MainState, MainEffect> =
         reducer
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun providePersonClickedReducer(reducer: PersonClickedReducer): Reducer<MainAction.PersonClicked, MainState, MainEffect> =
         reducer
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideShowPersonDetailsHandler(handler: ShowPersonDetailsHandler): EffectHandler<MainEffect.ShowPersonDetails> =
         handler
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideActivity(activity: MainActivity): AppCompatActivity = activity
 }

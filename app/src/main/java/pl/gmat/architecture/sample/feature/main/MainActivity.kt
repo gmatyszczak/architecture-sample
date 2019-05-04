@@ -4,9 +4,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.gmat.architecture.core.BaseActivity
 import pl.gmat.architecture.core.EffectHandler
+import pl.gmat.architecture.core.Injector
 import pl.gmat.architecture.sample.R
-import pl.gmat.architecture.sample.SampleAppInjector
 import pl.gmat.architecture.sample.feature.main.action.MainAction
+import pl.gmat.architecture.sample.feature.main.di.DaggerMainComponent
 import pl.gmat.architecture.sample.feature.main.effect.MainEffect
 import pl.gmat.architecture.sample.feature.main.widget.PeopleAdapter
 import javax.inject.Inject
@@ -17,7 +18,7 @@ class MainActivity : BaseActivity<MainViewModel, MainState, MainEffect, MainActi
 
     override val viewModelClass = MainViewModel::class.java
 
-    override fun inject() = SampleAppInjector.appComponent.mainComponentFactory().create(this).inject(this)
+    override fun inject() = DaggerMainComponent.factory().create(this, Injector.coreComponent).inject(this)
 
     @Inject
     lateinit var showPersonDetailsHandler: EffectHandler<MainEffect.ShowPersonDetails>

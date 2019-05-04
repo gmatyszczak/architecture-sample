@@ -1,6 +1,6 @@
 package pl.gmat.architecture.sample.feature.main.action
 
-import pl.gmat.architecture.sample.domain.Person
+import pl.gmat.architecture.core.domain.Person
 
 sealed class MainAction {
     object Init : MainAction()

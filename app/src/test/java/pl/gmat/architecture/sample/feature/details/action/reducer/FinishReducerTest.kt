@@ -2,7 +2,7 @@ package pl.gmat.architecture.sample.feature.details.action.reducer
 
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import pl.gmat.architecture.sample.domain.Person
+import pl.gmat.architecture.core.domain.Person
 import pl.gmat.architecture.sample.feature.details.DetailsState
 import pl.gmat.architecture.sample.feature.details.action.DetailsAction
 import pl.gmat.architecture.sample.feature.details.effect.DetailsEffect

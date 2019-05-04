@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import pl.gmat.architecture.core.EffectHandler
+import pl.gmat.architecture.core.FeatureScope
 import pl.gmat.architecture.core.Reducer
-import pl.gmat.architecture.core.ScreenScope
 import pl.gmat.architecture.core.ViewModelKey
 import pl.gmat.architecture.sample.feature.details.DetailsActivity
 import pl.gmat.architecture.sample.feature.details.DetailsState
@@ -20,27 +20,27 @@ import pl.gmat.architecture.sample.feature.details.effect.handler.FinishHandler
 @Module
 class DetailsModule {
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     @IntoMap
     @ViewModelKey(DetailsViewModel::class)
     fun provideDetailsViewModel(viewModel: DetailsViewModel): ViewModel = viewModel
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideInitialState(activity: DetailsActivity) =
         DetailsState(person = activity.intent.getParcelableExtra(DetailsActivity.EXTRA_PERSON))
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideFinishReducer(reducer: FinishReducer): Reducer<DetailsAction.Finish, DetailsState, DetailsEffect> =
         reducer
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideFinishHandler(handler: FinishHandler): EffectHandler<DetailsEffect.Finish> = handler
 
-    @ScreenScope
+    @FeatureScope
     @Provides
     fun provideActivity(activity: DetailsActivity): AppCompatActivity = activity
 }

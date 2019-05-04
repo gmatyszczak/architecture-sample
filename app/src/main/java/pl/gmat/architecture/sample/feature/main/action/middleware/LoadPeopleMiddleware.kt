@@ -4,7 +4,7 @@ import io.reactivex.disposables.Disposable
 import pl.gmat.architecture.core.ActionDispatcher
 import pl.gmat.architecture.core.Middleware
 import pl.gmat.architecture.sample.common.CompositeDisposableFacade
-import pl.gmat.architecture.sample.domain.PeopleRepository
+import pl.gmat.architecture.sample.data.PeopleRepository
 import pl.gmat.architecture.sample.feature.main.action.MainAction
 import javax.inject.Inject
 

@@ -6,10 +6,11 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_details.*
 import pl.gmat.architecture.core.BaseActivity
 import pl.gmat.architecture.core.EffectHandler
+import pl.gmat.architecture.core.Injector
+import pl.gmat.architecture.core.domain.Person
 import pl.gmat.architecture.sample.R
-import pl.gmat.architecture.sample.SampleAppInjector
-import pl.gmat.architecture.sample.domain.Person
 import pl.gmat.architecture.sample.feature.details.action.DetailsAction
+import pl.gmat.architecture.sample.feature.details.di.DaggerDetailsComponent
 import pl.gmat.architecture.sample.feature.details.effect.DetailsEffect
 import javax.inject.Inject
 
@@ -31,7 +32,7 @@ class DetailsActivity : BaseActivity<DetailsViewModel, DetailsState, DetailsEffe
     @Inject
     lateinit var finishHandler: EffectHandler<DetailsEffect.Finish>
 
-    override fun inject() = SampleAppInjector.appComponent.detailsComponentFactory().create(this).inject(this)
+    override fun inject() = DaggerDetailsComponent.factory().create(this, Injector.coreComponent).inject(this)
 
     override fun setUp() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -41,7 +42,7 @@ class DetailsActivity : BaseActivity<DetailsViewModel, DetailsState, DetailsEffe
         nameTextView.text = state.person.name
     }
 
-    override fun handleEffect(effect: DetailsEffect) = when(effect) {
+    override fun handleEffect(effect: DetailsEffect) = when (effect) {
         is DetailsEffect.Finish -> finishHandler.handle(effect)
     }
 

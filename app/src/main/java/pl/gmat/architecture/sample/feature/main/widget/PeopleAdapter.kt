@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import pl.gmat.architecture.core.domain.Person
 import pl.gmat.architecture.sample.R
-import pl.gmat.architecture.sample.domain.Person
 
 private val diffUtil = object : DiffUtil.ItemCallback<Person>() {
     override fun areItemsTheSame(oldItem: Person, newItem: Person) = oldItem == newItem

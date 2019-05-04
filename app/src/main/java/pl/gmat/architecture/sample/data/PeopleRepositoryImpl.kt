@@ -3,8 +3,8 @@ package pl.gmat.architecture.sample.data
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import pl.gmat.architecture.sample.domain.PeopleRepository
-import pl.gmat.architecture.sample.domain.Person
+import pl.gmat.architecture.core.PeopleService
+import pl.gmat.architecture.core.domain.Person
 import javax.inject.Inject
 
 class PeopleRepositoryImpl @Inject constructor(

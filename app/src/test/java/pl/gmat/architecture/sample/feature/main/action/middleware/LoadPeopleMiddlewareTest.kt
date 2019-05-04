@@ -10,9 +10,9 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import pl.gmat.architecture.core.ActionDispatcher
+import pl.gmat.architecture.core.domain.Person
 import pl.gmat.architecture.sample.common.CompositeDisposableFacade
-import pl.gmat.architecture.sample.domain.PeopleRepository
-import pl.gmat.architecture.sample.domain.Person
+import pl.gmat.architecture.sample.data.PeopleRepository
 import pl.gmat.architecture.sample.feature.main.action.MainAction
 
 @RunWith(MockitoJUnitRunner::class)

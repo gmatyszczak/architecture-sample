@@ -1,21 +1,27 @@
 package pl.gmat.architecture.sample.feature.main.di
 
 import dagger.BindsInstance
-import dagger.Subcomponent
-import pl.gmat.architecture.core.ScreenScope
+import dagger.Component
+import pl.gmat.architecture.core.CoreComponent
+import pl.gmat.architecture.core.FeatureScope
+import pl.gmat.architecture.core.ViewModelModule
 import pl.gmat.architecture.sample.feature.main.MainActivity
 
-@ScreenScope
-@Subcomponent(
+@FeatureScope
+@Component(
     modules = [
-        MainModule::class
+        MainModule::class,
+        ViewModelModule::class
+    ],
+    dependencies = [
+        CoreComponent::class
     ]
 )
 interface MainComponent {
 
-    @Subcomponent.Factory
+    @Component.Factory
     interface Factory {
-        fun create(@BindsInstance activity: MainActivity): MainComponent
+        fun create(@BindsInstance activity: MainActivity, coreComponent: CoreComponent): MainComponent
     }
 
     fun inject(screen: MainActivity)

@@ -1,17 +1,16 @@
-package pl.gmat.architecture.sample
+package pl.gmat.architecture.core
 
 import dagger.Module
 import dagger.Provides
-import pl.gmat.architecture.core.ApplicationScope
-import pl.gmat.architecture.sample.data.PeopleService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 @Module
 class ApiModule {
 
-    @ApplicationScope
+    @Singleton
     @Provides
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
         .baseUrl("https://swapi.co/api/")
@@ -19,6 +18,7 @@ class ApiModule {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 
+    @Singleton
     @Provides
     fun providePeopleService(retrofit: Retrofit): PeopleService = retrofit.create(PeopleService::class.java)
 }
