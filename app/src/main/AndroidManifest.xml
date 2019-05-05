@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-            android:name=".SampleApplication"
+            android:name="pl.gmat.architecture.SampleApplication"
             android:allowBackup="true"
             android:label="@string/app_name"
             android:icon="@mipmap/ic_launcher"
@@ -12,7 +12,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name="pl.gmat.architecture.sample.feature.main.MainActivity">
+        <activity android:name="pl.gmat.architecture.feature.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="pl.gmat.architecture.sample.feature.details.DetailsActivity"
+        <activity android:name="pl.gmat.architecture.feature.details.DetailsActivity"
                   android:label="@string/details_title"/>
     </application>
 </manifest>

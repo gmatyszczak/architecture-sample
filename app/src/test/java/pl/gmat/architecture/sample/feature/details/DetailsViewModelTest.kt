@@ -14,8 +14,10 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import pl.gmat.architecture.core.Reducer
 import pl.gmat.architecture.core.domain.Person
-import pl.gmat.architecture.sample.feature.details.action.DetailsAction
-import pl.gmat.architecture.sample.feature.details.effect.DetailsEffect
+import pl.gmat.architecture.feature.details.DetailsState
+import pl.gmat.architecture.feature.details.DetailsViewModel
+import pl.gmat.architecture.feature.details.action.DetailsAction
+import pl.gmat.architecture.feature.details.effect.DetailsEffect
 
 @RunWith(MockitoJUnitRunner::class)
 class DetailsViewModelTest {
@@ -35,7 +37,9 @@ class DetailsViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = DetailsViewModel(DetailsState(person), finishReducerMock)
+        viewModel = DetailsViewModel(
+            DetailsState(person), finishReducerMock
+        )
         viewModel.state.observeForever(stateObserver)
     }
 

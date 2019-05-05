@@ -11,12 +11,14 @@ import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import pl.gmat.architecture.common.CompositeDisposableFacade
 import pl.gmat.architecture.core.Middleware
 import pl.gmat.architecture.core.Reducer
 import pl.gmat.architecture.core.domain.Person
-import pl.gmat.architecture.sample.common.CompositeDisposableFacade
-import pl.gmat.architecture.sample.feature.main.action.MainAction
-import pl.gmat.architecture.sample.feature.main.effect.MainEffect
+import pl.gmat.architecture.feature.main.MainState
+import pl.gmat.architecture.feature.main.MainViewModel
+import pl.gmat.architecture.feature.main.action.MainAction
+import pl.gmat.architecture.feature.main.effect.MainEffect
 
 @RunWith(MockitoJUnitRunner::class)
 class MainViewModelTest {
