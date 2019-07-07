@@ -10,5 +10,6 @@ import javax.inject.Inject
 class FinishReducer @Inject constructor() : Reducer<DetailsAction.Finish, DetailsState, DetailsEffect> {
 
     override fun handle(state: DetailsState, action: DetailsAction.Finish) = Either.right(
-        DetailsEffect.Finish())
+        DetailsEffect.Finish
+    )
 }

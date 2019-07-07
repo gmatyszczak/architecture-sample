@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import javax.inject.Inject
 
-abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel<State, E, Action>, State, E : Effect, Action>
+abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel<State, Effect, Action>, State, Effect, Action>
     : AppCompatActivity() {
 
     protected lateinit var viewModel: ViewModel
@@ -21,7 +21,7 @@ abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel
 
     protected abstract fun inject()
 
-    protected abstract fun handleEffect(effect: E)
+    protected abstract fun handleEffect(effect: Effect)
 
     protected abstract fun Binding.observeState(binding: Binding)
 
@@ -39,7 +39,7 @@ abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel
             setUp()
             lifecycleOwner = this@BaseActivity
         }
-        viewModel.effect.observe { it.handleIfNotHandled { handleEffect(it) } }
+        viewModel.effect.observe(this::handleEffect)
     }
 
     private fun <Type> LiveData<Type>.observe(function: (Type) -> Unit) =

@@ -7,7 +7,7 @@ abstract class BaseViewModel<State, Effect, BaseAction>(
     val initialState: State
 ) : ViewModel(), ActionDispatcher<BaseAction> {
 
-    val effect = MutableLiveData<Effect>()
+    val effect = SingleLiveEvent<Effect>()
     val state = MutableLiveData<State>()
 
     protected inline fun <reified A> Middleware<A, BaseAction>.dispatch(action: BaseAction) =

@@ -55,7 +55,7 @@ class DetailsViewModelTest {
                 initialState,
                 DetailsAction.Finish
             )
-        ).thenReturn(Either.right(DetailsEffect.Finish()))
+        ).thenReturn(Either.right(DetailsEffect.Finish))
 
         viewModel.dispatch(DetailsAction.Finish)
         verify(finishReducerMock).handle(initialState, DetailsAction.Finish)
