@@ -1,9 +1,9 @@
 package pl.gmat.architecture.feature.main
 
 import pl.gmat.architecture.common.CompositeDisposableFacade
-import pl.gmat.architecture.core.BaseViewModel
-import pl.gmat.architecture.core.Middleware
-import pl.gmat.architecture.core.Reducer
+import pl.gmat.architecture.core.feature.BaseViewModel
+import pl.gmat.architecture.core.feature.Middleware
+import pl.gmat.architecture.core.feature.Reducer
 import pl.gmat.architecture.feature.main.action.MainAction
 import pl.gmat.architecture.feature.main.effect.MainEffect
 import javax.inject.Inject

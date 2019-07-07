@@ -1,4 +1,4 @@
-package pl.gmat.architecture.core
+package pl.gmat.architecture.core.data
 
 import io.reactivex.Single
 import retrofit2.http.GET

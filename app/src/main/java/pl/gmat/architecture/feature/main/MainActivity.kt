@@ -1,9 +1,9 @@
 package pl.gmat.architecture.feature.main
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import pl.gmat.architecture.core.BaseActivity
-import pl.gmat.architecture.core.EffectHandler
-import pl.gmat.architecture.core.Injector
+import pl.gmat.architecture.core.di.Injector
+import pl.gmat.architecture.core.feature.BaseActivity
+import pl.gmat.architecture.core.feature.EffectHandler
 import pl.gmat.architecture.feature.main.action.MainAction
 import pl.gmat.architecture.feature.main.di.DaggerMainComponent
 import pl.gmat.architecture.feature.main.effect.MainEffect

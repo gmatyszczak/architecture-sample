@@ -3,7 +3,7 @@ package pl.gmat.architecture.data
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import pl.gmat.architecture.core.PeopleService
+import pl.gmat.architecture.core.data.PeopleService
 import pl.gmat.architecture.core.domain.Person
 import javax.inject.Inject
 

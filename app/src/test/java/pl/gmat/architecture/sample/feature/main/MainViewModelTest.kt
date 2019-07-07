@@ -12,9 +12,9 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import pl.gmat.architecture.common.CompositeDisposableFacade
-import pl.gmat.architecture.core.Middleware
-import pl.gmat.architecture.core.Reducer
 import pl.gmat.architecture.core.domain.Person
+import pl.gmat.architecture.core.feature.Middleware
+import pl.gmat.architecture.core.feature.Reducer
 import pl.gmat.architecture.feature.main.MainState
 import pl.gmat.architecture.feature.main.MainViewModel
 import pl.gmat.architecture.feature.main.action.MainAction

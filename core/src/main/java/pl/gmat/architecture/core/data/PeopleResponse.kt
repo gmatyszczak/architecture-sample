@@ -1,4 +1,4 @@
-package pl.gmat.architecture.core
+package pl.gmat.architecture.core.data
 
 import pl.gmat.architecture.core.domain.Person
 

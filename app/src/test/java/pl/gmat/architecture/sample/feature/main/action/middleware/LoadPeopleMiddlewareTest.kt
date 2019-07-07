@@ -10,8 +10,8 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import pl.gmat.architecture.common.CompositeDisposableFacade
-import pl.gmat.architecture.core.ActionDispatcher
 import pl.gmat.architecture.core.domain.Person
+import pl.gmat.architecture.core.feature.ActionDispatcher
 import pl.gmat.architecture.data.PeopleRepository
 import pl.gmat.architecture.feature.main.action.MainAction
 import pl.gmat.architecture.feature.main.action.middleware.LoadPeopleMiddleware

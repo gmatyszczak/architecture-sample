@@ -12,8 +12,8 @@ import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import pl.gmat.architecture.core.Reducer
 import pl.gmat.architecture.core.domain.Person
+import pl.gmat.architecture.core.feature.Reducer
 import pl.gmat.architecture.feature.details.DetailsState
 import pl.gmat.architecture.feature.details.DetailsViewModel
 import pl.gmat.architecture.feature.details.action.DetailsAction

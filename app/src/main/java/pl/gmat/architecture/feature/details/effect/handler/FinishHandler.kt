@@ -1,7 +1,7 @@
 package pl.gmat.architecture.feature.details.effect.handler
 
 import androidx.appcompat.app.AppCompatActivity
-import pl.gmat.architecture.core.EffectHandler
+import pl.gmat.architecture.core.feature.EffectHandler
 import pl.gmat.architecture.feature.details.effect.DetailsEffect
 import javax.inject.Inject
 

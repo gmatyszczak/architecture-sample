@@ -3,10 +3,10 @@ package pl.gmat.architecture.feature.details
 import android.content.Context
 import android.content.Intent
 import android.view.MenuItem
-import pl.gmat.architecture.core.BaseActivity
-import pl.gmat.architecture.core.EffectHandler
-import pl.gmat.architecture.core.Injector
+import pl.gmat.architecture.core.di.Injector
 import pl.gmat.architecture.core.domain.Person
+import pl.gmat.architecture.core.feature.BaseActivity
+import pl.gmat.architecture.core.feature.EffectHandler
 import pl.gmat.architecture.feature.details.action.DetailsAction
 import pl.gmat.architecture.feature.details.di.DaggerDetailsComponent
 import pl.gmat.architecture.feature.details.effect.DetailsEffect

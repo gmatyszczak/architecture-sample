@@ -1,4 +1,4 @@
-package pl.gmat.architecture.core
+package pl.gmat.architecture.core.feature
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

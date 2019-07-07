@@ -1,4 +1,4 @@
-package pl.gmat.architecture.core;
+package pl.gmat.architecture.core.feature;
 
 /*
  *  Copyright 2017 Google Inc.

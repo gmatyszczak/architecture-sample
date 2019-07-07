@@ -2,9 +2,9 @@ package pl.gmat.architecture.feature.main.di
 
 import dagger.BindsInstance
 import dagger.Component
-import pl.gmat.architecture.core.CoreComponent
-import pl.gmat.architecture.core.FeatureScope
-import pl.gmat.architecture.core.ViewModelModule
+import pl.gmat.architecture.core.di.CoreComponent
+import pl.gmat.architecture.core.feature.FeatureScope
+import pl.gmat.architecture.core.feature.ViewModelModule
 import pl.gmat.architecture.feature.main.MainActivity
 
 @FeatureScope

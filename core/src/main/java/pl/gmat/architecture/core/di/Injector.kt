@@ -1,4 +1,4 @@
-package pl.gmat.architecture.core
+package pl.gmat.architecture.core.di
 
 object Injector {
 

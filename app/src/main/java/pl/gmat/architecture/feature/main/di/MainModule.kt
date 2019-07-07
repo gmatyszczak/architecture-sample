@@ -8,7 +8,7 @@ import dagger.multibindings.IntoMap
 import io.reactivex.disposables.CompositeDisposable
 import pl.gmat.architecture.common.CompositeDisposableFacade
 import pl.gmat.architecture.common.CompositeDisposableFacadeImpl
-import pl.gmat.architecture.core.*
+import pl.gmat.architecture.core.feature.*
 import pl.gmat.architecture.data.PeopleRepository
 import pl.gmat.architecture.data.PeopleRepositoryImpl
 import pl.gmat.architecture.feature.main.MainActivity

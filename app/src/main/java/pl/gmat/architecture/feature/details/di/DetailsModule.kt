@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
-import pl.gmat.architecture.core.EffectHandler
-import pl.gmat.architecture.core.FeatureScope
-import pl.gmat.architecture.core.Reducer
-import pl.gmat.architecture.core.ViewModelKey
+import pl.gmat.architecture.core.feature.EffectHandler
+import pl.gmat.architecture.core.feature.FeatureScope
+import pl.gmat.architecture.core.feature.Reducer
+import pl.gmat.architecture.core.feature.ViewModelKey
 import pl.gmat.architecture.feature.details.DetailsActivity
 import pl.gmat.architecture.feature.details.DetailsState
 import pl.gmat.architecture.feature.details.DetailsViewModel
