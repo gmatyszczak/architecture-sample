@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import javax.inject.Inject
 
-abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel<State, Effect, Action>, State, Effect, Action>
+abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel<State, Effect, Action>, State, Effect, Action : Any>
     : AppCompatActivity() {
 
     protected lateinit var viewModel: ViewModel

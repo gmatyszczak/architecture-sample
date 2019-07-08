@@ -5,9 +5,6 @@ import androidx.lifecycle.ViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
-import io.reactivex.disposables.CompositeDisposable
-import pl.gmat.architecture.common.CompositeDisposableFacade
-import pl.gmat.architecture.common.CompositeDisposableFacadeImpl
 import pl.gmat.architecture.core.feature.*
 import pl.gmat.architecture.data.PeopleRepository
 import pl.gmat.architecture.data.PeopleRepositoryImpl
@@ -41,31 +38,31 @@ class MainModule {
 
     @FeatureScope
     @Provides
-    fun provideCompositeDisposable() = CompositeDisposable()
+    @IntoMap
+    @MiddlewareKey(MainAction.Init::class)
+    fun provideLoadPeopleMiddleware(middleware: LoadPeopleMiddleware): Middleware<MainAction, MainAction> =
+        middleware as Middleware<MainAction, MainAction>
 
     @FeatureScope
     @Provides
-    fun provideCompositeDisposableFacade(facade: CompositeDisposableFacadeImpl): CompositeDisposableFacade = facade
+    @IntoMap
+    @ReducerKey(MainAction.LoadingFailed::class)
+    fun provideLoadingFailedReducer(reducer: LoadingFailedReducer): Reducer<MainAction, MainState, MainEffect> =
+        reducer as Reducer<MainAction, MainState, MainEffect>
 
     @FeatureScope
     @Provides
-    fun provideLoadPeopleMiddleware(middleware: LoadPeopleMiddleware): Middleware<MainAction.Init, MainAction> =
-        middleware
+    @IntoMap
+    @ReducerKey(MainAction.LoadingFinished::class)
+    fun provideLoadingFinishedReducer(reducer: LoadingFinishedReducer): Reducer<MainAction, MainState, MainEffect> =
+        reducer as Reducer<MainAction, MainState, MainEffect>
 
     @FeatureScope
     @Provides
-    fun provideLoadingFailedReducer(reducer: LoadingFailedReducer): Reducer<MainAction.LoadingFailed, MainState, MainEffect> =
-        reducer
-
-    @FeatureScope
-    @Provides
-    fun provideLoadingFinishedReducer(reducer: LoadingFinishedReducer): Reducer<MainAction.LoadingFinished, MainState, MainEffect> =
-        reducer
-
-    @FeatureScope
-    @Provides
-    fun providePersonClickedReducer(reducer: PersonClickedReducer): Reducer<MainAction.PersonClicked, MainState, MainEffect> =
-        reducer
+    @IntoMap
+    @ReducerKey(MainAction.PersonClicked::class)
+    fun providePersonClickedReducer(reducer: PersonClickedReducer): Reducer<MainAction, MainState, MainEffect> =
+        reducer as Reducer<MainAction, MainState, MainEffect>
 
     @FeatureScope
     @Provides

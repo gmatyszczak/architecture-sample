@@ -1,4 +1,4 @@
-package pl.gmat.architecture.common
+package pl.gmat.architecture.core.feature
 
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

@@ -1,8 +1,8 @@
 package pl.gmat.architecture.feature.main.action.middleware
 
 import io.reactivex.disposables.Disposable
-import pl.gmat.architecture.common.CompositeDisposableFacade
 import pl.gmat.architecture.core.feature.ActionDispatcher
+import pl.gmat.architecture.core.feature.CompositeDisposableFacade
 import pl.gmat.architecture.core.feature.Middleware
 import pl.gmat.architecture.data.PeopleRepository
 import pl.gmat.architecture.feature.main.action.MainAction
