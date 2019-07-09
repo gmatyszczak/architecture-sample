@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class MainViewModel @Inject constructor(
-    private val compositeDisposableFacade: CompositeDisposableFacade,
+    compositeDisposableFacade: CompositeDisposableFacade,
     initialState: MainState,
     reducers: MutableMap<Class<*>, Provider<Reducer<MainAction, MainState, MainEffect>>>,
     middleware: MutableMap<Class<*>, Provider<Middleware<MainAction, MainAction>>>
@@ -18,10 +18,5 @@ class MainViewModel @Inject constructor(
 
     init {
         dispatch(MainAction.Init)
-    }
-
-    override fun onCleared() {
-        compositeDisposableFacade.clear()
-        super.onCleared()
     }
 }

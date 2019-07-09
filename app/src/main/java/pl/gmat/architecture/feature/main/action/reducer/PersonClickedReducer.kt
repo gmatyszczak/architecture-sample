@@ -1,6 +1,5 @@
 package pl.gmat.architecture.feature.main.action.reducer
 
-import arrow.core.Either
 import pl.gmat.architecture.core.feature.Reducer
 import pl.gmat.architecture.feature.main.MainState
 import pl.gmat.architecture.feature.main.action.MainAction
@@ -11,5 +10,5 @@ class PersonClickedReducer @Inject constructor() :
     Reducer<MainAction.PersonClicked, MainState, MainEffect> {
 
     override fun handle(state: MainState, action: MainAction.PersonClicked) =
-        Either.right(MainEffect.ShowPersonDetails(action.person))
+        Reducer.Result.Effect(MainEffect.ShowPersonDetails(action.person))
 }
