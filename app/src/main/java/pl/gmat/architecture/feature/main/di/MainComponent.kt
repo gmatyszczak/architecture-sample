@@ -12,6 +12,9 @@ import pl.gmat.architecture.feature.main.MainActivity
 @Component(
     modules = [
         MainModule::class,
+        MainReducerModule::class,
+        MainMiddlewareModule::class,
+        MainEffectHandlerModule::class,
         ViewModelModule::class,
         CompositeDisposableModule::class
     ],

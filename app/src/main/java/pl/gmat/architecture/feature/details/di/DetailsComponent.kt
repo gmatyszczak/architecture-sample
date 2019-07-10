@@ -12,6 +12,8 @@ import pl.gmat.architecture.feature.details.DetailsActivity
 @Component(
     modules = [
         DetailsModule::class,
+        DetailsReducerModule::class,
+        DetailsEffectHandlerModule::class,
         ViewModelModule::class,
         CompositeDisposableModule::class
     ],
