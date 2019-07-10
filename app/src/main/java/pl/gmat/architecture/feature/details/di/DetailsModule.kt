@@ -37,7 +37,10 @@ class DetailsModule {
 
     @FeatureScope
     @Provides
-    fun provideFinishHandler(handler: FinishHandler): EffectHandler<DetailsEffect.Finish> = handler
+    @IntoMap
+    @EffectHandlerKey(DetailsEffect.Finish::class)
+    fun provideFinishHandler(handler: FinishHandler): EffectHandler<DetailsEffect> =
+        handler as EffectHandler<DetailsEffect>
 
     @FeatureScope
     @Provides

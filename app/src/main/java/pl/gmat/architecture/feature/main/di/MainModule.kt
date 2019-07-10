@@ -66,8 +66,10 @@ class MainModule {
 
     @FeatureScope
     @Provides
-    fun provideShowPersonDetailsHandler(handler: ShowPersonDetailsHandler): EffectHandler<MainEffect.ShowPersonDetails> =
-        handler
+    @IntoMap
+    @EffectHandlerKey(MainEffect.ShowPersonDetails::class)
+    fun provideShowPersonDetailsHandler(handler: ShowPersonDetailsHandler): EffectHandler<MainEffect> =
+        handler as EffectHandler<MainEffect>
 
     @FeatureScope
     @Provides

@@ -13,6 +13,7 @@ import pl.gmat.architecture.feature.details.effect.DetailsEffect
 import pl.gmat.architecture.sample.R
 import pl.gmat.architecture.sample.databinding.ActivityDetailsBinding
 import javax.inject.Inject
+import javax.inject.Provider
 
 class DetailsActivity :
     BaseActivity<ActivityDetailsBinding, DetailsViewModel, DetailsState, DetailsEffect, DetailsAction>() {
@@ -31,7 +32,7 @@ class DetailsActivity :
     override val viewModelClass = DetailsViewModel::class.java
 
     @Inject
-    lateinit var finishHandler: EffectHandler<DetailsEffect.Finish>
+    override lateinit var effectHandlers: MutableMap<Class<*>, Provider<EffectHandler<DetailsEffect>>>
 
     override fun inject() = DaggerDetailsComponent.factory().create(this, Injector.coreComponent).inject(this)
 
@@ -41,10 +42,6 @@ class DetailsActivity :
 
     override fun ActivityDetailsBinding.observeState(binding: ActivityDetailsBinding) {
         state = viewModel.state
-    }
-
-    override fun handleEffect(effect: DetailsEffect) = when (effect) {
-        is DetailsEffect.Finish -> finishHandler.handle(effect)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {

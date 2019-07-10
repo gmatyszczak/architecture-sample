@@ -26,6 +26,7 @@ abstract class BaseViewModel<State, Effect, BaseAction : Any>(
                 }, {
                     effect.value = it
                 })
+                ?: throw IllegalStateException("No reducer for $action")
         }
     }
 

@@ -9,8 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import javax.inject.Inject
+import javax.inject.Provider
 
-abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel<State, Effect, Action>, State, Effect, Action : Any>
+abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel<State, Effect, Action>, State, Effect : Any, Action : Any>
     : AppCompatActivity() {
 
     protected lateinit var viewModel: ViewModel
@@ -19,9 +20,9 @@ abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel
 
     protected abstract val viewModelClass: Class<ViewModel>
 
-    protected abstract fun inject()
+    protected abstract val effectHandlers: MutableMap<Class<*>, Provider<EffectHandler<Effect>>>
 
-    protected abstract fun handleEffect(effect: Effect)
+    protected abstract fun inject()
 
     protected abstract fun Binding.observeState(binding: Binding)
 
@@ -46,4 +47,8 @@ abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel
         this.observe(this@BaseActivity, Observer {
             function(it)
         })
+
+    private fun handleEffect(effect: Effect) {
+        effectHandlers[effect::class.java]?.get()?.handle(effect) ?: throw IllegalStateException("No handler for $effect")
+    }
 }

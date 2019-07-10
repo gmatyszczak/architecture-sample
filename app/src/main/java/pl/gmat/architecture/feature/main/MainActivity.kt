@@ -11,6 +11,7 @@ import pl.gmat.architecture.feature.main.widget.PeopleAdapter
 import pl.gmat.architecture.sample.R
 import pl.gmat.architecture.sample.databinding.ActivityMainBinding
 import javax.inject.Inject
+import javax.inject.Provider
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel, MainState, MainEffect, MainAction>() {
 
@@ -19,7 +20,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel, MainState,
     override val viewModelClass = MainViewModel::class.java
 
     @Inject
-    lateinit var showPersonDetailsHandler: EffectHandler<MainEffect.ShowPersonDetails>
+    override lateinit var effectHandlers: MutableMap<Class<*>, Provider<EffectHandler<MainEffect>>>
 
     private lateinit var peopleAdapter: PeopleAdapter
 
@@ -37,9 +38,5 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel, MainState,
             adapter = peopleAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
-    }
-
-    override fun handleEffect(effect: MainEffect) = when (effect) {
-        is MainEffect.ShowPersonDetails -> showPersonDetailsHandler.handle(effect)
     }
 }
