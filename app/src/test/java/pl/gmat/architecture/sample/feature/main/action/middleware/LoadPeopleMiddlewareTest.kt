@@ -10,11 +10,13 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import pl.gmat.architecture.core.domain.Person
-import pl.gmat.architecture.core.feature.ActionDispatcher
 import pl.gmat.architecture.core.feature.CompositeDisposableFacade
+import pl.gmat.architecture.core.feature.Store
 import pl.gmat.architecture.data.PeopleRepository
+import pl.gmat.architecture.feature.main.MainState
 import pl.gmat.architecture.feature.main.action.MainAction
 import pl.gmat.architecture.feature.main.action.middleware.LoadPeopleMiddleware
+import pl.gmat.architecture.feature.main.effect.MainEffect
 
 @RunWith(MockitoJUnitRunner::class)
 class LoadPeopleMiddlewareTest {
@@ -26,7 +28,7 @@ class LoadPeopleMiddlewareTest {
     private lateinit var compositeDisposableFacadeMock: CompositeDisposableFacade
 
     @Mock
-    private lateinit var actionDispatcherMock: ActionDispatcher<MainAction>
+    private lateinit var storeMock: Store<MainState, MainEffect, MainAction>
 
     @InjectMocks
     private lateinit var loadPeopleMiddleware: LoadPeopleMiddleware
@@ -36,8 +38,8 @@ class LoadPeopleMiddlewareTest {
         val people = listOf(Person("name"))
         whenever(peopleRepositoryMock.load()).thenReturn(Single.just(people))
 
-        loadPeopleMiddleware.handle(MainAction.Init, actionDispatcherMock)
-        verify(actionDispatcherMock).dispatch(MainAction.LoadingFinished(people))
+        loadPeopleMiddleware.handle(MainAction.Init)
+        verify(storeMock).dispatch(MainAction.LoadingFinished(people))
         verify(compositeDisposableFacadeMock).add(any())
     }
 
@@ -45,8 +47,8 @@ class LoadPeopleMiddlewareTest {
     fun `when repository call failed on handle`() {
         whenever(peopleRepositoryMock.load()).thenReturn(Single.error(Throwable()))
 
-        loadPeopleMiddleware.handle(MainAction.Init, actionDispatcherMock)
-        verify(actionDispatcherMock).dispatch(MainAction.LoadingFailed)
+        loadPeopleMiddleware.handle(MainAction.Init)
+        verify(storeMock).dispatch(MainAction.LoadingFailed)
         verify(compositeDisposableFacadeMock).add(any())
     }
 

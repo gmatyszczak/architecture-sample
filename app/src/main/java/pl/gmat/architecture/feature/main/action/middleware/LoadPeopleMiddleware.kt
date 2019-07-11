@@ -1,26 +1,26 @@
 package pl.gmat.architecture.feature.main.action.middleware
 
-import io.reactivex.disposables.Disposable
-import pl.gmat.architecture.core.feature.ActionDispatcher
+import pl.gmat.architecture.core.feature.BaseMiddleware
 import pl.gmat.architecture.core.feature.CompositeDisposableFacade
-import pl.gmat.architecture.core.feature.Middleware
+import pl.gmat.architecture.core.feature.Store
 import pl.gmat.architecture.data.PeopleRepository
+import pl.gmat.architecture.feature.main.MainState
 import pl.gmat.architecture.feature.main.action.MainAction
+import pl.gmat.architecture.feature.main.effect.MainEffect
 import javax.inject.Inject
 
 class LoadPeopleMiddleware @Inject constructor(
     private val peopleRepository: PeopleRepository,
-    private val compositeDisposableFacade: CompositeDisposableFacade
-) : Middleware<MainAction.Init, MainAction> {
+    compositeDisposableFacade: CompositeDisposableFacade,
+    private val store: Store<MainState, MainEffect, MainAction>
+) : BaseMiddleware<MainAction.Init>(compositeDisposableFacade) {
 
-    override fun handle(action: MainAction.Init, actionDispatcher: ActionDispatcher<MainAction>) {
+    override fun handle(action: MainAction.Init) {
         peopleRepository.load()
             .subscribe({
-                actionDispatcher.dispatch(MainAction.LoadingFinished(it))
+                store.dispatch(MainAction.LoadingFinished(it))
             }, {
-                actionDispatcher.dispatch(MainAction.LoadingFailed)
+                store.dispatch(MainAction.LoadingFailed)
             }).addDisposable()
     }
-
-    private fun Disposable.addDisposable() = compositeDisposableFacade.add(this)
 }

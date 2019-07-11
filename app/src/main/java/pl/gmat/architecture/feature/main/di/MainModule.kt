@@ -5,22 +5,31 @@ import androidx.lifecycle.ViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
-import pl.gmat.architecture.core.feature.FeatureScope
-import pl.gmat.architecture.core.feature.ViewModelKey
+import pl.gmat.architecture.core.feature.*
 import pl.gmat.architecture.data.PeopleRepository
 import pl.gmat.architecture.data.PeopleRepositoryImpl
 import pl.gmat.architecture.feature.main.MainActivity
 import pl.gmat.architecture.feature.main.MainState
 import pl.gmat.architecture.feature.main.MainViewModel
+import pl.gmat.architecture.feature.main.action.MainAction
+import pl.gmat.architecture.feature.main.effect.MainEffect
+import javax.inject.Provider
 
 @Module
 class MainModule {
 
-    @FeatureScope
     @Provides
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     fun provideMainViewModel(viewModel: MainViewModel): ViewModel = viewModel
+
+    @FeatureScope
+    @Provides
+    fun provideStore(
+        initialState: MainState,
+        reducers: MutableMap<Class<*>, Provider<Reducer<MainAction, MainState, MainEffect>>>,
+        middleware: MutableMap<Class<*>, Provider<Middleware<MainAction>>>
+    ): Store<MainState, MainEffect, MainAction> = StoreImpl(initialState, reducers, middleware)
 
     @FeatureScope
     @Provides
