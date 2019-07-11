@@ -77,7 +77,7 @@ class StoreImplTest {
                 initialState,
                 TestAction.Reducer
             )
-        ).thenReturn(Reducer.Result.State(newState))
+        ).thenReturn(Result.State(newState))
 
         store.dispatch(TestAction.Reducer)
 
@@ -92,7 +92,7 @@ class StoreImplTest {
                 initialState,
                 TestAction.Reducer
             )
-        ).thenReturn(Reducer.Result.Effect(TestEffect))
+        ).thenReturn(Result.Effect(TestEffect))
 
         store.dispatch(TestAction.Reducer)
 
