@@ -9,14 +9,13 @@ import pl.gmat.architecture.feature.main.action.MainAction
 import pl.gmat.architecture.feature.main.effect.MainEffect
 import javax.inject.Inject
 
-class LoadPeopleMiddleware @Inject constructor(
+class RefreshPeopleMiddleware @Inject constructor(
     private val peopleRepository: PeopleRepository,
     compositeDisposableFacade: CompositeDisposableFacade,
     private val store: Store<MainState, MainEffect, MainAction>
-) : BaseMiddleware<MainAction.Init>(compositeDisposableFacade) {
+) : BaseMiddleware<MainAction.SwipedToRefresh>(compositeDisposableFacade) {
 
-    override fun handle(action: MainAction.Init) {
-        store.dispatch(MainAction.ShowLoading)
+    override fun handle(action: MainAction.SwipedToRefresh) {
         peopleRepository.load()
             .subscribe({
                 store.dispatch(MainAction.LoadingFinished(it))
@@ -24,4 +23,5 @@ class LoadPeopleMiddleware @Inject constructor(
                 store.dispatch(MainAction.LoadingFailed)
             }).addDisposable()
     }
+
 }

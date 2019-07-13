@@ -1,11 +1,10 @@
-package pl.gmat.architecture.sample.feature.main.action.reducer
+package pl.gmat.architecture.feature.main.action.reducer
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import pl.gmat.architecture.core.feature.Result
 import pl.gmat.architecture.feature.main.MainState
 import pl.gmat.architecture.feature.main.action.MainAction
-import pl.gmat.architecture.feature.main.action.reducer.LoadingFailedReducer
 
 class LoadingFailedReducerTest {
 

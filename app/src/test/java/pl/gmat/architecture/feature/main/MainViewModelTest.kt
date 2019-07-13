@@ -1,4 +1,4 @@
-package pl.gmat.architecture.sample.feature.main
+package pl.gmat.architecture.feature.main
 
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
@@ -8,8 +8,6 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import pl.gmat.architecture.core.feature.CompositeDisposableFacade
 import pl.gmat.architecture.core.feature.Store
-import pl.gmat.architecture.feature.main.MainState
-import pl.gmat.architecture.feature.main.MainViewModel
 import pl.gmat.architecture.feature.main.action.MainAction
 import pl.gmat.architecture.feature.main.effect.MainEffect
 

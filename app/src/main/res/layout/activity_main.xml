@@ -5,19 +5,30 @@
     <data>
         <import type="androidx.lifecycle.LiveData"/>
         <import type="pl.gmat.architecture.feature.main.MainState"/>
+        <import type="pl.gmat.architecture.feature.main.action.MainAction"/>
         <import type="pl.gmat.architecture.core.domain.Person"/>
+
         <variable name="state" type="LiveData&lt;MainState>"/>
+        <variable name="viewModel" type="pl.gmat.architecture.feature.main.MainViewModel"/>
     </data>
 
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:people="@{state.list}"/>
+                app:onRefreshListener="@{() -> viewModel.dispatch(MainAction.SwipedToRefresh.INSTANCE)}"
+                app:refreshing="@{state.isLoading}">
 
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:people="@{state.list}"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </FrameLayout>
 </layout>

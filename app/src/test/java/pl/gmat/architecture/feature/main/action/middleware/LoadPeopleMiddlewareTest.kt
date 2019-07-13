@@ -1,6 +1,7 @@
-package pl.gmat.architecture.sample.feature.main.action.middleware
+package pl.gmat.architecture.feature.main.action.middleware
 
 import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
@@ -15,7 +16,6 @@ import pl.gmat.architecture.core.feature.Store
 import pl.gmat.architecture.data.PeopleRepository
 import pl.gmat.architecture.feature.main.MainState
 import pl.gmat.architecture.feature.main.action.MainAction
-import pl.gmat.architecture.feature.main.action.middleware.LoadPeopleMiddleware
 import pl.gmat.architecture.feature.main.effect.MainEffect
 
 @RunWith(MockitoJUnitRunner::class)
@@ -39,7 +39,12 @@ class LoadPeopleMiddlewareTest {
         whenever(peopleRepositoryMock.load()).thenReturn(Single.just(people))
 
         loadPeopleMiddleware.handle(MainAction.Init)
-        verify(storeMock).dispatch(MainAction.LoadingFinished(people))
+
+
+        inOrder(storeMock) {
+            verify(storeMock).dispatch(MainAction.ShowLoading)
+            verify(storeMock).dispatch(MainAction.LoadingFinished(people))
+        }
         verify(compositeDisposableFacadeMock).add(any())
     }
 
@@ -48,7 +53,11 @@ class LoadPeopleMiddlewareTest {
         whenever(peopleRepositoryMock.load()).thenReturn(Single.error(Throwable()))
 
         loadPeopleMiddleware.handle(MainAction.Init)
-        verify(storeMock).dispatch(MainAction.LoadingFailed)
+
+        inOrder(storeMock) {
+            verify(storeMock).dispatch(MainAction.ShowLoading)
+            verify(storeMock).dispatch(MainAction.LoadingFailed)
+        }
         verify(compositeDisposableFacadeMock).add(any())
     }
 

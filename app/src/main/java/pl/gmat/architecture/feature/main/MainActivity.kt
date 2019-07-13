@@ -21,12 +21,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel, MainState,
     override fun inject() = DaggerMainComponent.factory().create(this, Injector.coreComponent).inject(this)
 
     override fun ActivityMainBinding.observeState(binding: ActivityMainBinding) {
-        state = viewModel.state
+        state = this@MainActivity.viewModel.state
     }
 
     override fun ActivityMainBinding.setUp() {
+        viewModel = this@MainActivity.viewModel
         peopleAdapter = PeopleAdapter {
-            viewModel.dispatch(MainAction.PersonClicked(it))
+            this@MainActivity.viewModel.dispatch(MainAction.PersonClicked(it))
         }
         recyclerView.apply {
             adapter = peopleAdapter

@@ -12,6 +12,7 @@ import pl.gmat.architecture.feature.main.action.MainAction
 import pl.gmat.architecture.feature.main.action.reducer.LoadingFailedReducer
 import pl.gmat.architecture.feature.main.action.reducer.LoadingFinishedReducer
 import pl.gmat.architecture.feature.main.action.reducer.PersonClickedReducer
+import pl.gmat.architecture.feature.main.action.reducer.ShowLoadingReducer
 import pl.gmat.architecture.feature.main.effect.MainEffect
 
 @Module
@@ -34,4 +35,10 @@ class MainReducerModule : BaseModule<Reducer<MainAction, MainState, MainEffect>>
     @IntoMap
     @ClassKey(MainAction.PersonClicked::class)
     fun providePersonClickedReducer(reducer: PersonClickedReducer) = provide(reducer)
+
+    @FeatureScope
+    @Provides
+    @IntoMap
+    @ClassKey(MainAction.ShowLoading::class)
+    fun provideShowLoadingReducer(reducer: ShowLoadingReducer) = provide(reducer)
 }
