@@ -20,5 +20,9 @@ class ApiModule {
 
     @Singleton
     @Provides
+    fun provideSchedulerProvider(provider: SchedulerProviderImpl): SchedulerProvider = provider
+
+    @Singleton
+    @Provides
     fun providePeopleService(retrofit: Retrofit): PeopleService = retrofit.create(PeopleService::class.java)
 }

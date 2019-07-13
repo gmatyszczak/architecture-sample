@@ -13,8 +13,8 @@ import org.mockito.junit.MockitoJUnitRunner
 import pl.gmat.architecture.core.domain.Person
 import pl.gmat.architecture.core.feature.CompositeDisposableFacade
 import pl.gmat.architecture.core.feature.Store
-import pl.gmat.architecture.data.PeopleRepository
 import pl.gmat.architecture.feature.main.MainState
+import pl.gmat.architecture.feature.main.PeopleRepository
 import pl.gmat.architecture.feature.main.action.MainAction
 import pl.gmat.architecture.feature.main.effect.MainEffect
 

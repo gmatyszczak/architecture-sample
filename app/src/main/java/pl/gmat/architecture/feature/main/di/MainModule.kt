@@ -6,11 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 import pl.gmat.architecture.core.feature.*
-import pl.gmat.architecture.data.PeopleRepository
-import pl.gmat.architecture.data.PeopleRepositoryImpl
-import pl.gmat.architecture.feature.main.MainActivity
-import pl.gmat.architecture.feature.main.MainState
-import pl.gmat.architecture.feature.main.MainViewModel
+import pl.gmat.architecture.feature.main.*
 import pl.gmat.architecture.feature.main.action.MainAction
 import pl.gmat.architecture.feature.main.effect.MainEffect
 import javax.inject.Provider
