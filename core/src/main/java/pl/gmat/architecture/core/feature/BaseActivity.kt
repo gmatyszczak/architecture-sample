@@ -20,8 +20,6 @@ abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel
 
     protected abstract val viewModelClass: Class<ViewModel>
 
-    protected abstract val effectHandlers: MutableMap<Class<*>, Provider<EffectHandler<Effect>>>
-
     protected abstract fun inject()
 
     protected abstract fun Binding.observeState(binding: Binding)
@@ -30,6 +28,9 @@ abstract class BaseActivity<Binding : ViewDataBinding, ViewModel : BaseViewModel
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var effectHandlers: MutableMap<Class<*>, Provider<EffectHandler<Effect>>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         inject()
